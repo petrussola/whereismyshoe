@@ -5,6 +5,7 @@ import { Route, withRouter } from 'react-router-dom';
 // COMPONENTS
 import Shoes from './Views/Shoes';
 import EditShoe from './Views/EditShoe';
+import NavBar from './Views/NavBar';
 
 // CONTEXT
 import ShoesContext from './Contexts/ShoesContext';
@@ -21,13 +22,6 @@ function App({ history }) {
   const [fetchDataBoolean, changeFetchDataBoolean] = useState(false);
 
   const initialShoes = [];
-
-  // db.collection('shoes').onSnapshot(querySnapshot => {
-  //   querySnapshot.forEach(doc => {
-  //     initialShoes.push(doc);
-  //   });
-  //   setShoes(initialShoes);
-  // });
 
   useEffect(() => {
     db.collection('shoes')
@@ -57,6 +51,7 @@ function App({ history }) {
       }}
     >
       <div className="App">
+        <Route path="/" component={NavBar} />
         <Route exact path="/" component={Shoes} />
         <Route path="/edit/:shoeId" component={EditShoe} />
       </div>
