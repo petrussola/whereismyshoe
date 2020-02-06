@@ -6,6 +6,7 @@ import { Route, withRouter } from 'react-router-dom';
 import Shoes from './Views/Shoes';
 import EditShoe from './Views/EditShoe';
 import NavBar from './Views/NavBar';
+import Boxes from './Views/Boxes';
 
 // CONTEXT
 import ShoesContext from './Contexts/ShoesContext';
@@ -18,6 +19,8 @@ import './App.css';
 
 function App({ history }) {
   const [shoes, setShoes] = useState([]);
+  const [boxes, setBoxes] = useState([]);
+  const [shoeInBox, setShoeInBox] = useState([]);
   const [editedShoe, setEditedShoe] = useState({});
   const [fetchDataBoolean, changeFetchDataBoolean] = useState(false);
 
@@ -40,20 +43,25 @@ function App({ history }) {
     history.push(`/edit/${shoe.id}`);
   };
 
+  const context = {
+    shoes,
+    setShoes,
+    editShoeHandler,
+    editedShoe,
+    changeFetchDataBoolean,
+    boxes,
+    setBoxes,
+    shoeInBox,
+    setShoeInBox
+  };
+
   return (
-    <ShoesContext.Provider
-      value={{
-        shoes,
-        setShoes,
-        editShoeHandler,
-        editedShoe,
-        changeFetchDataBoolean
-      }}
-    >
+    <ShoesContext.Provider value={context}>
       <div className="App">
         <Route path="/" component={NavBar} />
         <Route exact path="/" component={Shoes} />
         <Route path="/edit/:shoeId" component={EditShoe} />
+        <Route path="/boxes" component={Boxes} />
       </div>
     </ShoesContext.Provider>
   );

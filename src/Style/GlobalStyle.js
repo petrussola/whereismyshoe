@@ -53,6 +53,7 @@ table {
 
 *, *:before, *:after {
   box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
 }
 
 h1 {

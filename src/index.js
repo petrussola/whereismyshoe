@@ -1,6 +1,7 @@
 // DEPENDENCIES
 import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import 'typeface-roboto';
 
 // HELPERS
 import GlobalStyle from './Style/GlobalStyle';
@@ -12,7 +13,7 @@ import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
   <Router>
-    <GlobalStyle />
+    {/* <GlobalStyle /> */}
     <App />
   </Router>,
   document.getElementById('root')
