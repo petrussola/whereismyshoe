@@ -1,60 +1,73 @@
 // DEPENDENCIES
-import React, { useContext } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-// CONTEXT
-import ShoesContext from '../Contexts/ShoesContext';
+// MATERIAL UI
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
 
-const StyledCard = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 30%;
-  height: 350px;
-  box-shadow: 0.5rem 0.5rem 1rem gray;
-  background: white;
-  .pic-container {
-    height: 65%;
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-  }
-  .description-container {
-    height: 35%;
-  }
-  .description-props {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-  }
+const StyledCard = styled(Card)`
+  max-width: 30vw;
+`;
+
+const StyledCardMedia = styled(CardMedia)`
+  width: 30vw;
+  height: 140px;
 `;
 
 const ShoeCard = ({ shoe }) => {
-  const { editShoeHandler } = useContext(ShoesContext);
-  const shoeDoc = shoe.data();
+  const test = () => {
+    console.log('yay');
+  };
   return (
     <StyledCard>
-      {}
-      <div className="pic-container">
-        <img src={shoeDoc.photo_url} alt="shoe" />
-      </div>
-      <div className="description-container">
-        <h3>{shoeDoc.name}</h3>
-        <div className="description-props">
-          <div>
-            <h5>Style: {shoeDoc.style}</h5>
-            <h5>Season: {shoeDoc.season}</h5>
-          </div>
-          <div>
-            <h5>Box: XX</h5>
-            <button onClick={() => editShoeHandler(shoe)}>Edit</button>
-          </div>
-        </div>
-      </div>
+      <CardActionArea>
+        <StyledCardMedia image={shoe.photo_url} title="shoe" />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {shoe.name}
+          </Typography>
+          <Typography color="textSecondary" gutterBottom>
+            {shoe.style}
+          </Typography>
+          <Typography color="textSecondary" gutterBottom>
+            {shoe.season}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+      <CardActions>
+        <Button size="small" color="primary" onClick={test}>
+          Edit
+        </Button>
+      </CardActions>
     </StyledCard>
   );
+  // return (
+  //   <StyledCard>
+  //     {}
+  //     <div className="pic-container">
+  //       <img src={shoeDoc.photo_url} alt="shoe" />
+  //     </div>
+  //     <div className="description-container">
+  //       <h3>{shoeDoc.name}</h3>
+  //       <div className="description-props">
+  //         <div>
+  //           <h5>Style: {shoeDoc.style}</h5>
+  //           <h5>Season: {shoeDoc.season}</h5>
+  //         </div>
+  //         <div>
+  //           <h5>Box: XX</h5>
+  //           <button onClick={() => editShoeHandler(shoe)}>Edit</button>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   </StyledCard>
+  // );
 };
 
 export default ShoeCard;
