@@ -22,7 +22,7 @@ function App(props) {
 
   const editShoeHandler = shoe => {
     setEditedShoe(shoe);
-    props.history.push(`/edit/${shoe.id}`);
+    props.history.push(`/edit/${shoe.doc.id}`);
   };
 
   const context = {

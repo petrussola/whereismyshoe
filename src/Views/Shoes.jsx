@@ -26,8 +26,7 @@ const Shoes = () => {
       .get()
       .then(querySnapshot => {
         querySnapshot.forEach(doc => {
-          debugger;
-          initialShoes.push(doc.data());
+          initialShoes.push({ doc, data: doc.data() });
         });
         setShoes(initialShoes);
       });
