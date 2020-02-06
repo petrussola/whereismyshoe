@@ -1,5 +1,5 @@
 // DEPENDENCIES
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Route, withRouter } from 'react-router-dom';
 
 // COMPONENTS
@@ -11,36 +11,18 @@ import Boxes from './Views/Boxes';
 // CONTEXT
 import ShoesContext from './Contexts/ShoesContext';
 
-// HELPERS
-import db from './config/firebase';
-
 // STYLES
 import './App.css';
 
-function App({ history }) {
+function App(props) {
   const [shoes, setShoes] = useState([]);
   const [boxes, setBoxes] = useState([]);
   const [shoeInBox, setShoeInBox] = useState([]);
   const [editedShoe, setEditedShoe] = useState({});
-  const [fetchDataBoolean, changeFetchDataBoolean] = useState(false);
-
-  const initialShoes = [];
-
-  useEffect(() => {
-    db.collection('shoes')
-      .get()
-      .then(querySnapshot => {
-        querySnapshot.forEach(doc => {
-          initialShoes.push(doc);
-        });
-        setShoes(initialShoes);
-        changeFetchDataBoolean(false);
-      });
-  }, [fetchDataBoolean]);
 
   const editShoeHandler = shoe => {
     setEditedShoe(shoe);
-    history.push(`/edit/${shoe.id}`);
+    props.history.push(`/edit/${shoe.id}`);
   };
 
   const context = {
@@ -48,7 +30,6 @@ function App({ history }) {
     setShoes,
     editShoeHandler,
     editedShoe,
-    changeFetchDataBoolean,
     boxes,
     setBoxes,
     shoeInBox,
