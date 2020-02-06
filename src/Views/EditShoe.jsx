@@ -10,10 +10,9 @@ import ShoesContext from '../Contexts/ShoesContext';
 
 // HELPERS
 import db from '../config/firebase';
-import shoesContext from '../Contexts/ShoesContext';
 
 const EditShoe = ({ history, match }) => {
-  const { editedShoe, shoes, setShoes } = useContext(ShoesContext);
+  const { editedShoe } = useContext(ShoesContext);
   const { shoeId } = match.params;
   const handleEditShoe = values => {
     db.collection('shoes')

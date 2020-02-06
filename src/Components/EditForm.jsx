@@ -2,6 +2,9 @@
 import React from 'react';
 import { Form, Field } from 'formik';
 
+// MATERIAL UI
+import Button from '@material-ui/core/Button';
+
 const EditForm = props => {
   return (
     <div>
@@ -18,7 +21,9 @@ const EditForm = props => {
         <Field name="season" type="text" />
         <label htmlFor="style">Style</label>
         <Field name="style" type="text" />
-        <button type="submit">Edit</button>
+        <Button type="submit" color="primary" size="medium" variant="contained">
+          Edit
+        </Button>
       </Form>
     </div>
   );
