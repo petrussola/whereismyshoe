@@ -17,10 +17,9 @@ const StyledContainer = styled.div`
   justify-content: space-evenly;
 `;
 
-const initialShoes = [];
-
 const Shoes = () => {
   const { shoes, setShoes } = useContext(ShoesContext);
+  const initialShoes = [];
   useEffect(() => {
     db.collection('shoes')
       .get()

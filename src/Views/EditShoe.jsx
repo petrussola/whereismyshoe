@@ -10,16 +10,16 @@ import ShoesContext from '../Contexts/ShoesContext';
 
 // HELPERS
 import db from '../config/firebase';
+import shoesContext from '../Contexts/ShoesContext';
 
 const EditShoe = ({ history, match }) => {
-  const { editedShoe, changeFetchDataBoolean } = useContext(ShoesContext);
-  const initialValues = editedShoe.data();
-  const handleSubmit = values => {
+  const { editedShoe, shoes, setShoes } = useContext(ShoesContext);
+  const { shoeId } = match.params;
+  const handleEditShoe = values => {
     db.collection('shoes')
-      .doc(match.params.shoeId)
+      .doc(shoeId)
       .update(values)
-      .then(doc => {
-        changeFetchDataBoolean(true);
+      .then(() => {
         history.push('/');
       });
   };
@@ -27,8 +27,8 @@ const EditShoe = ({ history, match }) => {
     <div>
       <h1>Edit shoe form:</h1>
       <Formik
-        initialValues={initialValues}
-        onSubmit={handleSubmit}
+        initialValues={editedShoe.data}
+        onSubmit={handleEditShoe}
         component={EditForm}
       />
     </div>
